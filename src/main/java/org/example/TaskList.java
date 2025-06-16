@@ -10,4 +10,16 @@ public class TaskList {
     public TaskList(Task firstTask){
         this.taskList.createSingleLinkedlist(firstTask);
     }
+
+    public void addTask(Task task){
+        this.taskList.insertLinkedList(task, this.taskList.getSize());
+    }
+
+    public void setAsComplete(int locationIndex){
+        taskList.searchNode(locationIndex).value.setDoneStatus(true);
+    }
+
+    public String toString(){
+        return taskList.traverseLinkedList();
+    }
 }
