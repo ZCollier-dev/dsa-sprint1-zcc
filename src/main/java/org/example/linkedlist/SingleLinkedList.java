@@ -3,9 +3,13 @@ package org.example.linkedlist;
 import org.example.Task;
 
 public class SingleLinkedList {
-    public Node head;
-    public Node tail;
-    public int size;
+    private Node head;
+    private Node tail;
+    private int size;
+
+    public int getSize(){
+        return this.size;
+    }
 
     public Node createSingleLinkedlist(Task nodeValue){
         Node node = new Node();
@@ -47,20 +51,18 @@ public class SingleLinkedList {
     }
 
     //Traversing through a linked list
-    public void traverseLinkedList(){
+    public String traverseLinkedList(){
         if (head == null) {
-            System.out.println("SLL does not exist");
+            return "SSL does not exist";
         } else {
+            String returnString = "";
             Node tempNode = head;
             for (int i = 0; i < size; i++) {
-                System.out.print(tempNode.value);
-                if (i != size -1) {
-                    System.out.print("->");
-                }
+                returnString += tempNode.value.toString() + "\n";
                 tempNode = tempNode.next;
             }
+            return returnString;
         }
-        System.out.println("\n");
     }
 
     //Search for an element
@@ -77,6 +79,27 @@ public class SingleLinkedList {
         }
         System.out.print("Node not found");
         return false;
+    }
+
+    //Search for an element by id
+    public Node searchNode(int location){
+        if (head != null){
+            if (location > 0 && location < size){
+                Node tempNode = head;
+                for (int i = 0; i <= location; i++) {
+                    if (i == location){
+                        System.out.println("Node found.\n");
+                        return tempNode;
+                    }
+                    tempNode = tempNode.next;
+                }
+            } else {
+                System.out.println("Index out of bounds.");
+                return null;
+            }
+        }
+        System.out.println("Node not found.");
+        return null;
     }
 
     //Delete Method
