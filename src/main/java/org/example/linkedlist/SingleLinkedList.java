@@ -1,11 +1,13 @@
 package org.example.linkedlist;
 
+import org.example.Task;
+
 public class SingleLinkedList {
     public Node head;
     public Node tail;
     public int size;
 
-    public Node createSingleLinkedlist(int nodeValue){
+    public Node createSingleLinkedlist(Task nodeValue){
         Node node = new Node();
         node.next = null;
         node.value = nodeValue;
@@ -16,14 +18,14 @@ public class SingleLinkedList {
     }
 
     //Insert Method
-    public void insertLinkedList(int nodeValue, int location) {
+    public void insertLinkedList(Task nodeValue, int location) {
         Node node = new Node();
         node.value = nodeValue;
 
         if (head == null){
             createSingleLinkedlist(nodeValue);
             return;
-        } else if (location == 0) {
+        } else if (location <= 0) {
             node.next = head;
             head = node;
         } else if (location >= size){
@@ -62,7 +64,7 @@ public class SingleLinkedList {
     }
 
     //Search for an element
-    public boolean searchNode(int nodeValue){
+    public boolean searchNode(Task nodeValue){
         if (head != null) {
             Node tempNode = head;
             for (int i = 0; i < size; i++){
