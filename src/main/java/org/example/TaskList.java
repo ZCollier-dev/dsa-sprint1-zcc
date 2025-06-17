@@ -9,6 +9,7 @@ public class TaskList {
     private SingleLinkedList taskList;
 
     public TaskList(Task firstTask){
+        this.taskList = new SingleLinkedList();
         this.taskList.createSingleLinkedlist(firstTask);
     }
 

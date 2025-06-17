@@ -29,6 +29,15 @@ public class Main {
         System.out.println("4. View Menu");
     }
 
+    public static boolean userIsUnique(String userName, ArrayList<User> userArray){
+        for (int i = 0; i < userArray.size(); i++) {
+            if (userArray.get(i).getUserName().equals(userName)){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static User userSystem(User user, Scanner scanner){
         int choice = -1;
 
@@ -36,12 +45,14 @@ public class Main {
         System.out.println();
         loggedInMenu(user.getUserName());
         while (choice != 0) {
-            System.out.print("Enter your choice:");
+            System.out.print("Enter your choice: ");
             if (scanner.hasNextInt()){
                 choice = scanner.nextInt();
                 switch (choice){
                     case 0: {
                         System.out.println("Logging out...");
+                        System.out.println();
+                        loggedOutMenu();
                         break;
                     }
                     case 1: {
@@ -49,7 +60,7 @@ public class Main {
                         break;
                     }
                     case 2: {
-                        scanner.next();
+                        scanner.nextLine();
                         String description;
 
                         while (true){
@@ -65,6 +76,7 @@ public class Main {
                                 break;
                             }
                         }
+                        break;
                     }
                     case 3: {
                         System.out.println(user);
@@ -82,6 +94,7 @@ public class Main {
                                 System.out.println("ERR: Invalid input.");
                             }
                         }
+                        break;
                     }
                     case 4: {
                         loggedInMenu(user.getUserName());
@@ -99,15 +112,6 @@ public class Main {
         return user;
     }
 
-    public static boolean userIsUnique(String userName, ArrayList<User> userArray){
-        for (int i = 0; i < userArray.size(); i++) {
-            if (userArray.get(i).getUserName().equals(userName)){
-                return false;
-            }
-        }
-        return true;
-    }
-
     public static void main(String[] args) {
         ArrayList<User> userArray = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -121,10 +125,11 @@ public class Main {
                 switch (choice) {
                     case 0: {
                         System.out.println("Exiting program...");
+                        scanner.close();
                         break;
                     }
                     case 1: {
-                        scanner.next();
+                        scanner.nextLine();
                         boolean isEnd;
                         String userName;
                         String firstTask;
@@ -148,7 +153,7 @@ public class Main {
                             if (!firstTask.isEmpty()){
                                 userArray.add(new User(userName, new Task(firstTask)));
                                 System.out.println("User added.");
-                                isEnd = false;
+                                isEnd = true;
                             } else {
                                 System.out.println("ERR: Task text is empty.");
                             }
@@ -156,14 +161,14 @@ public class Main {
                         break;
                     }
                     case 2: {
-                        scanner.next();
+                        scanner.nextLine();
                         String userName;
                         User user;
 
                         System.out.println("Log In selected.");
                         while (true) {
-                            System.out.println("Enter username (or \"end\" to exit): ");
-                            userName = scanner.nextLine();
+                            System.out.print("Enter username (or \"end\" to exit): ");
+                            userName = scanner.next();
                             if (userName.equalsIgnoreCase("end")){
                                 break;
                             }
