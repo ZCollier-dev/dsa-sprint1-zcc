@@ -58,7 +58,7 @@ public class SingleLinkedList {
             String returnString = "";
             Node tempNode = head;
             for (int i = 0; i < size; i++) {
-                returnString += tempNode.value.toString() + "\n";
+                returnString += i + ": " + tempNode.value.toString() + "\n";
                 tempNode = tempNode.next;
             }
             return returnString;
